@@ -33,21 +33,35 @@ class CategoryCart extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 12),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withValues(alpha: 0.1),
-                            spreadRadius: 1,
-                            blurRadius: 1,
-                        )
-                    ]
-                ),
+                // decoration: BoxDecoration(
+                //     color: Colors.white,
+                //     borderRadius: BorderRadius.circular(10),
+                //     boxShadow: [
+                //         BoxShadow(
+                //           color: Colors.grey.withValues(alpha: 0.1),
+                //             spreadRadius: 1,
+                //             blurRadius: 1,
+                //         )
+                //     ]
+                // ),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:[
-                        _getIcon(),
+                      Container(
+                        padding: const EdgeInsets.all(18),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(50),
+                            boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withValues(alpha: 0.1),
+                                    spreadRadius: 1,
+                                    blurRadius: 1,
+                                )
+                            ]
+                        ),
+                        child: _getIcon(),
+                      ),
                         const SizedBox(height: 8),
                         Text(name),
                     ],
