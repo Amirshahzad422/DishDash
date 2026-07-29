@@ -49,6 +49,7 @@ class _ContactScreenState extends State<ContactScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isMobile = Responsive.isMobile(context);
     final filteredFaqs = _faqs.where((faq) {
       if (_faqQuery.isEmpty) return true;
       return faq['question']!.toLowerCase().contains(_faqQuery.toLowerCase()) ||
@@ -71,28 +72,23 @@ class _ContactScreenState extends State<ContactScreen> {
                 const SizedBox(height: 24),
 
                 // Form & Info layout
-                LayoutBuilder(
-                  builder: (context, constraints) {
-                    bool isMobile = Responsive.isMobile(context);
-                    if (isMobile) {
-                      return Column(
-                        children: [
-                          _buildContactForm(context),
-                          const SizedBox(height: 24),
-                          _buildInfoCard(),
-                        ],
-                      );
-                    }
-                    return Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(flex: 3, child: _buildContactForm(context)),
-                        const SizedBox(width: 24),
-                        Expanded(flex: 2, child: _buildInfoCard()),
-                      ],
-                    );
-                  },
-                ),
+                if (isMobile)
+                  Column(
+                    children: [
+                      _buildContactForm(context),
+                      const SizedBox(height: 24),
+                      _buildInfoCard(),
+                    ],
+                  )
+                else
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(flex: 3, child: _buildContactForm(context)),
+                      const SizedBox(width: 24),
+                      Expanded(flex: 2, child: _buildInfoCard()),
+                    ],
+                  ),
                 const Divider(height: 48),
 
                 // Searchable FAQ Accordion

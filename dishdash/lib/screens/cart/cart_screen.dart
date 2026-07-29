@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../components/footer/custom_footer.dart';
+import '../../components/loader/dishdash_image.dart';
 import '../../providers/cart_provider.dart';
 import '../../routes/app_router.dart';
 import '../../styles/app_colors.dart';
@@ -107,17 +108,11 @@ class _CartScreenState extends State<CartScreen> {
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(12),
-                              child: Image.asset(
-                                item.item.imageUrl,
+                              child: DishDashImage(
+                                imageUrl: item.item.imageUrl,
                                 width: 80,
                                 height: 80,
                                 fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) => Container(
-                                  width: 80,
-                                  height: 80,
-                                  color: AppColors.primaryLight,
-                                  child: const Icon(Icons.fastfood, color: AppColors.primary),
-                                ),
                               ),
                             ),
                             const SizedBox(width: 12),

@@ -40,7 +40,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.restaurant, color: AppColors.primary, size: 26),
+              Image.asset(
+                'assets/images/logo.png',
+                width: 32,
+                height: 32,
+                fit: BoxFit.contain,
+              ),
               const SizedBox(width: 8),
               RichText(
                 text: TextSpan(
@@ -87,7 +92,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               icon: const Icon(Icons.favorite_border, color: AppColors.textPrimary),
               tooltip: 'Favourites',
               onPressed: () {
-                Navigator.pushNamed(context, AppRouter.ordersRoute);
+                Navigator.pushNamed(context, AppRouter.ordersRoute, arguments: 2);
               },
             ),
             if (favProvider.favouriteIds.isNotEmpty)
@@ -173,18 +178,23 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   Widget _navLink(BuildContext context, String title, String route) {
+    final currentRoute = ModalRoute.of(context)?.settings.name;
+    final isActive = currentRoute == route;
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 4),
       child: TextButton(
         onPressed: () {
-          Navigator.pushNamed(context, route);
+          if (!isActive) {
+            Navigator.pushNamed(context, route);
+          }
         },
         child: Text(
           title,
-          style: const TextStyle(
-            color: AppColors.textPrimary,
+          style: TextStyle(
+            color: isActive ? AppColors.primary : AppColors.textPrimary,
             fontSize: 15,
-            fontWeight: FontWeight.w600,
+            fontWeight: isActive ? FontWeight.bold : FontWeight.w600,
           ),
         ),
       ),

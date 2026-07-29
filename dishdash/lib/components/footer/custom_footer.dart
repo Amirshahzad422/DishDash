@@ -63,7 +63,12 @@ class CustomFooter extends StatelessWidget {
       children: [
         Row(
           children: [
-            const Icon(Icons.restaurant, color: AppColors.primary, size: 26),
+            Image.asset(
+              'assets/images/logo.png',
+              width: 32,
+              height: 32,
+              fit: BoxFit.contain,
+            ),
             const SizedBox(width: 8),
             Text(
               'DishDash',

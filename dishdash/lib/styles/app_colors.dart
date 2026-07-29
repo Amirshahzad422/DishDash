@@ -7,45 +7,73 @@ class AppColors {
   static const Color primaryLight = Color(0xFFFFEBEE);
   static const Color primaryContainer = Color(0xFFFFCDD2);
 
-  // Secondary Palette (Obsidian Charcoal)
-  static const Color secondary = Color(0xFF1E1E28);
-  static const Color secondaryLight = Color(0xFF2E2E3E);
-  static const Color secondaryContainer = Color(0xFF3E3E52);
+  // Secondary Palette (Obsidian Onyx)
+  static const Color secondary = Color(0xFF161622);
+  static const Color secondaryLight = Color(0xFF252538);
+  static const Color secondaryContainer = Color(0xFF32324A);
 
   // Surface & Background
-  static const Color background = Color(0xFFFAFAFA);
+  static const Color background = Color(0xFFF8F9FC);
   static const Color surface = Color(0xFFFFFFFF);
-  static const Color surfaceVariant = Color(0xFFF5F5F7);
-  static const Color surfaceSubtle = Color(0xFFFFF5F5);
+  static const Color surfaceVariant = Color(0xFFF1F3F9);
+  static const Color surfaceSubtle = Color(0xFFFFF0F0);
 
   // Text Colors
-  static const Color textPrimary = Color(0xFF1E1A17);
-  static const Color textSecondary = Color(0xFF574E47);
-  static const Color textLight = Color(0xFF9E9288);
+  static const Color textPrimary = Color(0xFF0F172A);
+  static const Color textSecondary = Color(0xFF475569);
+  static const Color textLight = Color(0xFF94A3B8);
 
   // Functional & Accents
   static const Color success = Color(0xFF10B981);
-  static const Color starYellow = Color(0xFFFFB800);
-  static const Color error = Color(0xFFD32F2F);
-  static const Color border = Color(0xFFEEEEEE);
-  static const Color divider = Color(0xFFF5F5F5);
+  static const Color starYellow = Color(0xFFF59E0B);
+  static const Color error = Color(0xFFEF4444);
+  static const Color border = Color(0xFFE2E8F0);
+  static const Color divider = Color(0xFFF1F5F9);
 
-  // Clean WebGL-Safe Shadows
+  // Luxury Gradients
+  static const LinearGradient primaryGradient = LinearGradient(
+    colors: [Color(0xFFE53935), Color(0xFFC62828)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const LinearGradient heroGradient = LinearGradient(
+    colors: [Color(0xFF0F172A), Color(0xFF1E293B)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const LinearGradient goldGradient = LinearGradient(
+    colors: [Color(0xFFF59E0B), Color(0xFFD97706)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  // Premium Soft Shadows
   static const BoxShadow softShadow = BoxShadow(
-    color: Color(0x0F000000),
-    blurRadius: 12,
-    offset: Offset(0, 4),
+    color: Color(0x0C0F172A),
+    blurRadius: 20,
+    spreadRadius: -2,
+    offset: Offset(0, 8),
   );
 
   static const BoxShadow cardShadow = BoxShadow(
-    color: Color(0x08000000),
-    blurRadius: 8,
-    offset: Offset(0, 2),
+    color: Color(0x0A0F172A),
+    blurRadius: 16,
+    spreadRadius: -2,
+    offset: Offset(0, 6),
   );
 
   static const BoxShadow primaryGlow = BoxShadow(
-    color: Color(0x26E53935),
-    blurRadius: 14,
-    offset: Offset(0, 4),
+    color: Color(0x3AE53935),
+    blurRadius: 16,
+    offset: Offset(0, 6),
+  );
+
+  static const BoxShadow floatingShadow = BoxShadow(
+    color: Color(0x1A0F172A),
+    blurRadius: 30,
+    spreadRadius: 0,
+    offset: Offset(0, 12),
   );
 }

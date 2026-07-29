@@ -8,6 +8,8 @@ class AboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isMobile = Responsive.isMobile(context);
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -19,12 +21,17 @@ class AboutScreen extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: AppColors.primary,
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  child: const Icon(Icons.restaurant, size: 36, color: Colors.white),
+                  child: Image.asset(
+                    'assets/images/logo.png',
+                    width: 44,
+                    height: 44,
+                    fit: BoxFit.contain,
+                  ),
                 ),
                 const SizedBox(height: 16),
                 const Text(
@@ -44,7 +51,7 @@ class AboutScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Our Story
                 const Text('Our Mission & Vision', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.textPrimary)),
@@ -70,31 +77,27 @@ class AboutScreen extends StatelessWidget {
                 // Master Chefs Section
                 const Text('Meet Our Master Culinary Team', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.textPrimary)),
                 const SizedBox(height: 16),
-                LayoutBuilder(
-                  builder: (context, constraints) {
-                    bool isMobile = Responsive.isMobile(context);
-                    if (isMobile) {
-                      return Column(
-                        children: [
-                          _chefCard('Chef Marco Rossi', 'Head Italian Pizzaiolo', '15+ years crafting artisanal sourdough pizzas in Naples.'),
-                          const SizedBox(height: 12),
-                          _chefCard('Chef Akira Tanaka', 'Executive Burger Artist', 'Pioneer of flame-grilled smash burgers and umami glazes.'),
-                          const SizedBox(height: 12),
-                          _chefCard('Chef Elena Gomez', 'Pastry & Beverage Director', 'Master mixologist behind our fresh botanical drinks.'),
-                        ],
-                      );
-                    }
-                    return Row(
-                      children: [
-                        Expanded(child: _chefCard('Chef Marco Rossi', 'Head Italian Pizzaiolo', '15+ years crafting artisanal sourdough pizzas in Naples.')),
-                        const SizedBox(width: 12),
-                        Expanded(child: _chefCard('Chef Akira Tanaka', 'Executive Burger Artist', 'Pioneer of flame-grilled smash burgers.')),
-                        const SizedBox(width: 12),
-                        Expanded(child: _chefCard('Chef Elena Gomez', 'Beverage Director', 'Master mixologist behind botanical drinks.')),
-                      ],
-                    );
-                  },
-                ),
+                if (isMobile)
+                  Column(
+                    children: [
+                      _chefCard('Chef Marco Rossi', 'Head Italian Pizzaiolo', '15+ years crafting artisanal sourdough pizzas in Naples.'),
+                      const SizedBox(height: 12),
+                      _chefCard('Chef Akira Tanaka', 'Executive Burger Artist', 'Pioneer of flame-grilled smash burgers and umami glazes.'),
+                      const SizedBox(height: 12),
+                      _chefCard('Chef Elena Gomez', 'Pastry & Beverage Director', 'Master mixologist behind our fresh botanical drinks.'),
+                    ],
+                  )
+                else
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(child: _chefCard('Chef Marco Rossi', 'Head Italian Pizzaiolo', '15+ years crafting artisanal sourdough pizzas in Naples.')),
+                      const SizedBox(width: 12),
+                      Expanded(child: _chefCard('Chef Akira Tanaka', 'Executive Burger Artist', 'Pioneer of flame-grilled smash burgers.')),
+                      const SizedBox(width: 12),
+                      Expanded(child: _chefCard('Chef Elena Gomez', 'Beverage Director', 'Master mixologist behind botanical drinks.')),
+                    ],
+                  ),
                 const SizedBox(height: 32),
 
                 // Hygiene & Quality

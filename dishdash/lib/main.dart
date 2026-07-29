@@ -28,7 +28,7 @@ class DishDashApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         scrollBehavior: const ScrollBehavior().copyWith(scrollbars: false),
-        initialRoute: AppRouter.homeRoute,
+        initialRoute: AppRouter.splashRoute,
         onGenerateRoute: AppRouter.generateRoute,
       ),
     );

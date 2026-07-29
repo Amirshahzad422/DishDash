@@ -111,7 +111,7 @@ class HomeScreen extends StatelessWidget {
                           SizedBox(width: 6),
                           Expanded(
                             child: Text(
-                              'Chef\'s Featured Specials',
+                              'Chef\'s Specials',
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -193,17 +193,19 @@ class HomeScreen extends StatelessWidget {
                         ],
                       );
                     }
-                    return Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(child: _featureItem(Icons.flash_on, 'Ultra-Fast Delivery', 'Delivered in under 30 mins.')),
-                        const SizedBox(width: 12),
-                        Expanded(child: _featureItem(Icons.restaurant, 'Master Chefs', 'Handcrafted by top chefs.')),
-                        const SizedBox(width: 12),
-                        Expanded(child: _featureItem(Icons.verified, '100% Fresh', 'Sourced daily from local farms.')),
-                        const SizedBox(width: 12),
-                        Expanded(child: _featureItem(Icons.route, 'Live Tracking', 'Follow your delivery on map.')),
-                      ],
+                    return IntrinsicHeight(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(child: _featureItem(Icons.flash_on, 'Ultra-Fast Delivery', 'Delivered in under 30 mins.')),
+                          const SizedBox(width: 12),
+                          Expanded(child: _featureItem(Icons.restaurant, 'Master Chefs', 'Handcrafted by top chefs.')),
+                          const SizedBox(width: 12),
+                          Expanded(child: _featureItem(Icons.verified, '100% Fresh', 'Sourced daily from local farms.')),
+                          const SizedBox(width: 12),
+                          Expanded(child: _featureItem(Icons.route, 'Live Tracking', 'Follow your delivery on map.')),
+                        ],
+                      ),
                     );
                   },
                 ),

@@ -65,7 +65,12 @@ class MainLayout extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const Icon(Icons.restaurant, color: AppColors.primary, size: 28),
+                    Image.asset(
+                      'assets/images/logo.png',
+                      width: 32,
+                      height: 32,
+                      fit: BoxFit.contain,
+                    ),
                     const SizedBox(width: 10),
                     Text(
                       'DishDash',
@@ -99,12 +104,24 @@ class MainLayout extends StatelessWidget {
   }
 
   Widget _drawerItem(BuildContext context, IconData icon, String title, String route) {
+    final currentRoute = ModalRoute.of(context)?.settings.name;
+    final isActive = currentRoute == route;
+
     return ListTile(
-      leading: Icon(icon, color: AppColors.secondary),
-      title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+      leading: Icon(icon, color: isActive ? AppColors.primary : AppColors.secondary),
+      title: Text(
+        title,
+        style: TextStyle(
+          fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+          color: isActive ? AppColors.primary : AppColors.textPrimary,
+          fontSize: 14,
+        ),
+      ),
       onTap: () {
         Navigator.pop(context);
-        Navigator.pushNamed(context, route);
+        if (!isActive) {
+          Navigator.pushNamed(context, route);
+        }
       },
     );
   }

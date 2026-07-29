@@ -41,10 +41,13 @@ class ProfileScreen extends StatelessWidget {
                       const SizedBox(height: 12),
                       const Text(
                         'Maryam Fatima',
+                        textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppColors.textPrimary),
                       ),
+                      const SizedBox(height: 4),
                       const Text(
                         'maryamfatima2253@gmail.com • +1 (555) 234-5678',
+                        textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 13, color: AppColors.textLight),
                       ),
                     ],

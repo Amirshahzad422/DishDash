@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../components/food_card/food_card.dart';
-import '../../components/footer/custom_footer.dart';
+import '../../components/loader/dishdash_image.dart';
 import '../../data/mock_food_data.dart';
 import '../../data/mock_reviews.dart';
 import '../../models/food_item.dart';
@@ -83,13 +83,9 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                   child: Center(
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(16),
-                      child: Image.asset(
-                        _selectedImage,
+                      child: DishDashImage(
+                        imageUrl: _selectedImage,
                         fit: BoxFit.contain,
-                        errorBuilder: (context, error, stackTrace) => Container(
-                          color: AppColors.primaryLight,
-                          child: const Icon(Icons.fastfood, size: 80, color: AppColors.primary),
-                        ),
                       ),
                     ),
                   ),
@@ -155,7 +151,7 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                                 ),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
-                                  child: Image.asset(img, fit: BoxFit.cover),
+                                  child: DishDashImage(imageUrl: img, fit: BoxFit.cover),
                                 ),
                               ),
                             );
@@ -405,13 +401,14 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                     const Text('You Might Also Like', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 12),
                     SizedBox(
-                      height: 290,
+                      height: 310,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: similarItems.length,
                         itemBuilder: (context, index) {
-                          return SizedBox(
-                            width: 210,
+                          return Container(
+                            width: 215,
+                            margin: const EdgeInsets.only(right: 14),
                             child: FoodCard(item: similarItems[index]),
                           );
                         },
@@ -455,9 +452,6 @@ class _FoodDetailScreenState extends State<FoodDetailScreen> {
                 ],
               ),
             ),
-
-            // Footer
-            const CustomFooter(),
           ],
         ),
       ),

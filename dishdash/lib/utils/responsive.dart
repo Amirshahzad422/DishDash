@@ -32,9 +32,9 @@ class Responsive extends StatelessWidget {
 
   static double getGridAspectRatio(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    if (width < 500) return 0.85;
-    if (width < 850) return 0.72;
-    return 0.75;
+    if (width < 500) return 0.82;
+    if (width < 850) return 0.80;
+    return 0.82;
   }
 
   @override

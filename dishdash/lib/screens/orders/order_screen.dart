@@ -10,8 +10,40 @@ import '../../routes/app_router.dart';
 import '../../styles/app_colors.dart';
 import '../../utils/formatters.dart';
 
-class OrderScreen extends StatelessWidget {
-  const OrderScreen({super.key});
+class OrderScreen extends StatefulWidget {
+  final int initialTabIndex;
+
+  const OrderScreen({
+    super.key,
+    this.initialTabIndex = 0,
+  });
+
+  @override
+  State<OrderScreen> createState() => _OrderScreenState();
+}
+
+class _OrderScreenState extends State<OrderScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      length: 3,
+      vsync: this,
+      initialIndex: widget.initialTabIndex,
+    );
+    _tabController.addListener(() {
+      if (mounted) setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,60 +51,59 @@ class OrderScreen extends StatelessWidget {
     final favProvider = Provider.of<FavouritesProvider>(context);
     final cartProvider = Provider.of<CartProvider>(context, listen: false);
 
-    return DefaultTabController(
-      length: 3,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              color: Colors.white,
-              padding: const EdgeInsets.only(top: 16, left: 20, right: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    'Track & My Orders',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.textPrimary,
-                    ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Container(
+            color: Colors.white,
+            padding: const EdgeInsets.only(top: 16, left: 20, right: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Track & My Orders',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.textPrimary,
                   ),
-                  SizedBox(height: 12),
-                  TabBar(
-                    labelColor: AppColors.primary,
-                    unselectedLabelColor: AppColors.textLight,
-                    indicatorColor: AppColors.primary,
-                    indicatorWeight: 3,
-                    labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                    tabs: [
-                      Tab(text: 'Active Orders'),
-                      Tab(text: 'Order History'),
-                      Tab(text: 'Favourites'),
-                    ],
-                  ),
-                ],
-              ),
+                ),
+                const SizedBox(height: 12),
+                TabBar(
+                  controller: _tabController,
+                  labelColor: AppColors.primary,
+                  unselectedLabelColor: AppColors.textLight,
+                  indicatorColor: AppColors.primary,
+                  indicatorWeight: 3,
+                  labelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                  tabs: const [
+                    Tab(text: 'Active Orders'),
+                    Tab(text: 'Order History'),
+                    Tab(text: 'Favourites'),
+                  ],
+                ),
+              ],
             ),
-            SizedBox(
-              height: 520,
-              child: TabBarView(
-                physics: const ClampingScrollPhysics(),
-                children: [
-                  // Tab 1: Active Orders
-                  _buildActiveOrdersTab(context, ordersProvider, cartProvider),
+          ),
+          SizedBox(
+            height: 520,
+            child: TabBarView(
+              controller: _tabController,
+              physics: const ClampingScrollPhysics(),
+              children: [
+                // Tab 1: Active Orders
+                _buildActiveOrdersTab(context, ordersProvider, cartProvider),
 
-                  // Tab 2: Order History
-                  _buildOrderHistoryTab(context, ordersProvider, cartProvider),
+                // Tab 2: Order History
+                _buildOrderHistoryTab(context, ordersProvider, cartProvider),
 
-                  // Tab 3: Favourites
-                  _buildFavouritesTab(context, favProvider),
-                ],
-              ),
+                // Tab 3: Favourites
+                _buildFavouritesTab(context, favProvider),
+              ],
             ),
-            const CustomFooter(),
-          ],
-        ),
+          ),
+          if (_tabController.index != 2) const CustomFooter(),
+        ],
       ),
     );
   }

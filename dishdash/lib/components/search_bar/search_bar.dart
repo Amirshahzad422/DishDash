@@ -44,17 +44,17 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 2),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(30),
-        boxShadow: const [AppColors.softShadow],
-        border: Border.all(color: AppColors.border, width: 0.8),
+        boxShadow: const [AppColors.cardShadow],
+        border: Border.all(color: AppColors.border.withValues(alpha: 0.8), width: 0.8),
       ),
       child: Row(
         children: [
-          const Icon(Icons.search, color: AppColors.primary, size: 22),
-          const SizedBox(width: 8),
+          const Icon(Icons.search_rounded, color: AppColors.primary, size: 22),
+          const SizedBox(width: 10),
           Expanded(
             child: TextField(
               controller: _controller,
@@ -82,17 +82,18 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
               },
             ),
           if (widget.onFilterPressed != null) ...[
-            const SizedBox(width: 4),
+            const SizedBox(width: 6),
             InkWell(
               onTap: widget.onFilterPressed,
               borderRadius: BorderRadius.circular(20),
               child: Container(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(9),
                 decoration: const BoxDecoration(
-                  color: AppColors.primaryLight,
+                  gradient: AppColors.primaryGradient,
                   shape: BoxShape.circle,
+                  boxShadow: [AppColors.primaryGlow],
                 ),
-                child: const Icon(Icons.tune, color: AppColors.primary, size: 18),
+                child: const Icon(Icons.tune_rounded, color: Colors.white, size: 16),
               ),
             ),
           ],
